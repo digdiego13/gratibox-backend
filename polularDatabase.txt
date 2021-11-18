@@ -1,0 +1,20 @@
+INSERT INTO subscription_items (item_name) VALUES ('Chás');
+
+INSERT INTO subscription_items (item_name) VALUES ('Incensos');
+
+INSERT INTO subscription_items (item_name) VALUES ('Produtos organicos');
+
+INSERT INTO subscription_category (name) VALUES ('Semanal');
+
+INSERT INTO subscription_category (name) VALUES ('Mensal');
+
+INSERT INTO adress (adress_name, cep, cidade, estate) VALUES ('Rua Linderson', '22020060', 'Rio de Janeiro', 'RJ');
+
+INSERT INTO subscription (user_id, category_id, subscription_date, adress_id, chosen_date) VALUES (1, 2, '2021/11/18', 1, '20');
+
+INSERT INTO subscription_final (subscription_id, item_id) VALUES (1, 1);
+
+INSERT INTO subscription_final (subscription_id, item_id) VALUES (1, 3);
+
+
+

@@ -33,7 +33,7 @@ async function userSession(id) {
           VALUES ($1, $2) RETURNING *
         `,
     // eslint-disable-next-line comma-dangle
-    [id, token]
+    [id, token],
   );
   return token;
 }

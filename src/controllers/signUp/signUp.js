@@ -18,7 +18,7 @@ async function singUp(req, res) {
         WHERE email = $1
     `,
       // eslint-disable-next-line comma-dangle
-      [email]
+      [email],
     );
 
     if (existEmail.rowCount !== 0) {
@@ -32,7 +32,7 @@ async function singUp(req, res) {
         VALUES ($1, $2, $3)
     `,
       // eslint-disable-next-line comma-dangle
-      [username, email, passwordHash]
+      [username, email, passwordHash],
     );
     return res.sendStatus(200);
   } catch (erro) {
