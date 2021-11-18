@@ -4,7 +4,7 @@ import signUpSchema from '../../schemas/signUpSchema.js';
 
 async function singUp(req, res) {
   // eslint-disable-next-line object-curly-newline
-  const { email, password, username, adress } = req.body;
+  const { email, password, username } = req.body;
   const isCorrectBody = signUpSchema.validate(req.body);
 
   if (isCorrectBody.error) {
@@ -28,11 +28,11 @@ async function singUp(req, res) {
     await connection.query(
       `
         INSERT INTO users
-        (name, email, password, adress)
-        VALUES ($1, $2, $3, $4)
+        (name, email, password)
+        VALUES ($1, $2, $3)
     `,
       // eslint-disable-next-line comma-dangle
-      [username, email, passwordHash, adress]
+      [username, email, passwordHash]
     );
     return res.sendStatus(200);
   } catch (erro) {
