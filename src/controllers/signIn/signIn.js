@@ -11,7 +11,7 @@ async function signIn(req, res) {
         WHERE email = $1
     `,
       // eslint-disable-next-line comma-dangle
-      [email]
+      [email],
     );
 
     const user = result.rows[0];
@@ -25,7 +25,7 @@ async function signIn(req, res) {
           VALUES ($1, $2)
         `,
         // eslint-disable-next-line comma-dangle
-        [user.id, token]
+        [user.id, token],
       );
 
       res.send({
