@@ -4,6 +4,7 @@ import singUp from './controllers/signUp/signUp.js';
 import signIn from './controllers/signIn/signIn.js';
 import logout from './controllers/logout.js';
 import getSubscription from './controllers/subscription/getSubscription.js';
+import postSubscription from './controllers/subscription/postSubscription.js';
 
 const app = express();
 app.use(cors());
@@ -19,5 +20,6 @@ app.post('/sign-in', signIn);
 app.post('/logout', logout);
 
 app.get('/subscription', getSubscription);
+app.post('/subscription', postSubscription);
 
 export default app;
