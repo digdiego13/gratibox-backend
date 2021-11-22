@@ -14,7 +14,6 @@ export default async function postSubscription(req, res) {
     state,
   } = req.body;
   const today = dayjs().format('YYYY/MM/DD');
-
   function categoryId() {
     if (subscriptionType === 'Semanal') {
       return 1;
@@ -55,6 +54,7 @@ export default async function postSubscription(req, res) {
       [adress, cep, city, state],
     );
     const adressId = insertAdress.rows[0].id;
+
     const insertSubscription = await connection.query(
       `
         INSERT INTO subscription (user_id, category_id, subscription_date, adress_id, chosen_date) VALUES ($1, $2, $3, $4, $5) RETURNING *;
