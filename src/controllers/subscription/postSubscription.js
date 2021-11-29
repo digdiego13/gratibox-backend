@@ -21,15 +21,15 @@ export default async function postSubscription(req, res) {
     return 2;
   }
   function itemId(item) {
-    let itemId = 0;
+    let id = 0;
     if (item === 'Chás') {
-      itemId = 1;
+      id = 1;
     } else if (item === 'Incensos') {
-      itemId = 2;
+      id = 2;
     } else if (item === 'Produtos organicos') {
-      itemId = 3;
+      id = 3;
     }
-    return itemId;
+    return id;
   }
 
   if (!token) return res.sendStatus(401);
@@ -46,7 +46,6 @@ export default async function postSubscription(req, res) {
 
     const userId = findToken.rows[0].user_id;
 
-    //ver no joi
     const insertAdress = await connection.query(
       `
       INSERT INTO adress (adress_name, cep, cidade, estate) VALUES ($1, $2, $3, $4) RETURNING *;
