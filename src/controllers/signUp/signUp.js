@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
-import connection from '../../database/database.js';
 import signUpSchema from '../../schemas/signUpSchema.js';
+import * as userService from '../../services/userService.js';
 
 async function singUp(req, res) {
   // eslint-disable-next-line object-curly-newline
@@ -12,28 +12,14 @@ async function singUp(req, res) {
   }
   const passwordHash = bcrypt.hashSync(password, 10);
   try {
-    const existEmail = await connection.query(
-      `
-        SELECT * FROM users
-        WHERE email = $1
-    `,
-      // eslint-disable-next-line comma-dangle
-      [email],
-    );
-
-    if (existEmail.rowCount !== 0) {
-      return res.sendStatus(403);
+    const signUp = await userService.logonService({
+      email,
+      passwordHash,
+      username,
+    });
+    if (signUp.status === 1) {
+      return res.status(403);
     }
-
-    await connection.query(
-      `
-        INSERT INTO users
-        (name, email, password)
-        VALUES ($1, $2, $3)
-    `,
-      // eslint-disable-next-line comma-dangle
-      [username, email, passwordHash],
-    );
     return res.sendStatus(200);
   } catch (erro) {
     return res.sendStatus(500);
