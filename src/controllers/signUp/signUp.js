@@ -10,15 +10,14 @@ async function singUp(req, res) {
   if (isCorrectBody.error) {
     return res.status(400).send(`${isCorrectBody.error.details[0].message}`);
   }
-  const passwordHash = bcrypt.hashSync(password, 10);
   try {
     const signUp = await userService.logonService({
       email,
-      passwordHash,
+      password,
       username,
     });
     if (signUp.status === 1) {
-      return res.status(403);
+      return res.sendStatus(403);
     }
     return res.sendStatus(200);
   } catch (erro) {

@@ -10,7 +10,8 @@ async function selectEmail({ email }) {
     [email],
   );
   const user = result.rows[0];
-  return { ...user, foundQuantity: result.rowCount };
+  const obj = { ...user, foundQuantity: result.rowCount };
+  return obj;
 }
 
 async function insertSession({ id, token }) {
