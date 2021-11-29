@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { v4 as uuid } from 'uuid';
-import * as userRepository from '../repositories/userRespository';
+import * as userRepository from '../repositories/userRespository.js';
 
 async function loginService({ email, password }) {
   const user = await userRepository.selectEmail({ email });
