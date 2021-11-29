@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import signUpSchema from '../../schemas/signUpSchema.js';
 import * as userService from '../../services/userService.js';
 
