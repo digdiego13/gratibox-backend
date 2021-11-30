@@ -4,12 +4,7 @@ import * as userRepository from '../repositories/userRespository.js';
 
 async function loginService({ email, password }) {
   const user = await userRepository.selectEmail({ email });
-  if (user.foundQuantity === 0) {
-    return {
-      message: 'user not found',
-      status: 1,
-    };
-  }
+  console.log(user);
   if (user && bcrypt.compareSync(password, user.password)) {
     // sucesso, usuário encontrado com este email e senha!
     const token = uuid();
@@ -32,9 +27,9 @@ async function loginService({ email, password }) {
 
 async function logonService({ email, password, username }) {
   const passwordHash = bcrypt.hashSync(password, 10);
-  const existEmail = await userRepository.selectEmail({ email });
+  const existEmail = await userRepository.existEmail({ email });
 
-  if (existEmail.foundQuantity !== 0) {
+  if (existEmail) {
     return { status: 1 };
   }
 

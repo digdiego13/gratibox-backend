@@ -9,9 +9,7 @@ async function selectEmail({ email }) {
     // eslint-disable-next-line comma-dangle
     [email],
   );
-  const user = result.rows[0];
-  const obj = { ...user, foundQuantity: result.rowCount };
-  return obj;
+  return result.rows[0];
 }
 
 async function insertSession({ id, token }) {
@@ -37,4 +35,21 @@ async function inserUser({ username, email, passwordHash }) {
   );
 }
 
-export { selectEmail, insertSession, inserUser };
+async function existEmail({ email }) {
+  const result = await connection.query(
+    `
+        SELECT * FROM users
+        WHERE email = $1
+    `,
+    // eslint-disable-next-line comma-dangle
+    [email],
+  );
+
+  if (result.rowCount !== 0) {
+    return true;
+  }
+
+  return false;
+}
+
+export { selectEmail, insertSession, inserUser, existEmail };
