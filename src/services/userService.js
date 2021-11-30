@@ -4,7 +4,6 @@ import * as userRepository from '../repositories/userRespository.js';
 
 async function loginService({ email, password }) {
   const user = await userRepository.selectEmail({ email });
-  console.log(user);
   if (user && bcrypt.compareSync(password, user.password)) {
     // sucesso, usuário encontrado com este email e senha!
     const token = uuid();
