@@ -1,12 +1,12 @@
 import bcrypt from 'bcrypt';
-import faker from 'faker';
+import faker-br from 'faker-br';
 import { v4 as uuid } from 'uuid';
 import connection from '../database/database.js';
 
 async function createUser() {
   const user = {
-    name: faker.name.findName(),
-    email: faker.internet.email(),
+    name: faker-br.name.findName(),
+    email: faker-br.internet.email(),
     password: '123456',
     hashedPassword: bcrypt.hashSync('123456', 10),
   };
